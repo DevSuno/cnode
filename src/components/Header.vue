@@ -1,6 +1,7 @@
 <template>
+
     <div class="header">
-        <img src="../assets/cnodejs_light.svg" alt="">
+        <img alt="" src="../assets/cnodejs_light.svg">
         <ul>
             <li><a href="#">首页</a></li>
             <li><a href="#">入门</a></li>
@@ -57,11 +58,9 @@
 
     }
 
-    .header a {
+    .header ul li a {
         color: #cccccc;
         font-size: 16px;
         text-shadow: none;
-
-
     }
 </style>
