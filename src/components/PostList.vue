@@ -17,7 +17,7 @@
                     </div>
 
                 </li>
-                <li v-for="(post,index) in posts" :key="index" >
+                <li :key="index" v-for="(post,index) in posts">
                     <!--头像-->
                     <img :src="post.author.avatar_url" alt="">
                     <span class="allcount">
@@ -35,9 +35,17 @@
 
                     </span>
                     <!--标题-->
-                    <span>
-                        {{post.title}}
-                    </span>
+                    <router-link :to="{
+                        name:'post_content',
+                        params:{
+                            id: post.id
+                        }
+                    }">
+                        <span>
+                            {{post.title}}
+                        </span>
+                    </router-link>
+
                     <!--最终回复时间-->
                     <span class="last_reply">
                         {{post.last_reply_at | formatDate}}
@@ -83,6 +91,7 @@
     .PostList {
         background-color: #e1e1e1;
     }
+
     .posts {
         margin-top: 10px;
     }
