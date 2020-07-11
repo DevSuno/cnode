@@ -10,16 +10,22 @@
                 <ul>
                     <li>*发布于：{{post.create_at | formatDate}}</li>
                     <li>*作者：{{post.author.loginname}}</li>
-                    <li>*{{post.visit_count}}</li>
-                    <li>*来自{{post | tabFormatter}}</li>
+                    <li>*阅读：{{post.visit_count}}</li>
+                    <li>*来自：{{post | tabFormatter}}</li>
                 </ul>
-                <div v-html="post.content" class="topic_content"></div>
+                <div class="topic_content" v-html="post.content"></div>
             </div>
             <div id="reply">
                 <div class="topbar">回复</div>
                 <div class="replyUp">
-                    <div :key="index" v-for="(reply,index) in post.replies " class="replySec">
-                        <router-link to="user_info">
+                    <div :key="index" class="replySec" v-for="(reply,index) in post.replies ">
+
+                        <router-link :to="{
+                            name:'user_info',
+                            params:{
+                                name: reply.author.loginname
+                            }
+                        }">
                             <img :src="reply.author.avatar_url" alt="">
                         </router-link>
                         <router-link to="user_info">
@@ -29,8 +35,8 @@
 
                         <span>{{index+1}}楼</span>
                         <span v-if="reply.ups.length> 0 ">
-                    {{reply.ups.length}}
-                    </span>
+                            {{reply.ups.length}}
+                        </span>
                         <p v-html="reply.content"></p>
                     </div>
                 </div>
@@ -47,14 +53,15 @@
         data() {
             return {
                 isLoading: false,
-                post:{}
+                post: {},
+
             }
         },
-        methods:{
-            getArticleData(){
+        methods: {
+            getArticleData() {
                 this.$https.get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
-                    .then(res =>{
-                        if(res.data.success == true){
+                    .then(res => {
+                        if (res.data.success == true) {
                             this.isLoading == false;
                             this.post = res.data.data
                         }
@@ -67,11 +74,11 @@
         beforeMount() {
             this.isLoading == true;
             this.getArticleData();
-        }
+        },
     };
 </script>
 
-<style >
+<style>
     @import url('../assets/markdown-github.css');
 
     .topbar {

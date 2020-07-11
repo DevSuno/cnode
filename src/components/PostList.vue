@@ -72,7 +72,6 @@
                     limit: 20
                 }).then(res => {
                     this.isLoading = false
-                    console.log(res);
                     this.posts = res.data.data
 
                 }).catch(err => {

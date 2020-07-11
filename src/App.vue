@@ -4,7 +4,6 @@
   <div id="app">
     <Header />
       <div class="main">
-
           <router-view name="main"></router-view>
       </div>
   </div>
@@ -19,6 +18,7 @@ export default {
   name: 'App',
   components: {
       Header,
+      // eslint-disable-next-line vue/no-unused-components
       PostList,
   }
 }
