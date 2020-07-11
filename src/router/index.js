@@ -10,7 +10,7 @@ export default new Router({
             name: 'root',
             path: '/',
             components: {
-                main: PostList
+               main: PostList
             }
 
         },
@@ -20,6 +20,11 @@ export default new Router({
             components: {
                 main: Article
             }
+        },
+        {
+            name: 'user_info',
+            path: '/userinfo/:name'
+
         }
     ]
 })

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Axios from "axios";
+import router from './router'
 
 
 Vue.prototype.$https = Axios;
@@ -8,6 +9,7 @@ Vue.config.productionTip = false
 
 new Vue({
     render: h => h(App),
+    router
 }).$mount('#app')
 Vue.filter('formatDate', function (str) {
     if (!str) return ''
