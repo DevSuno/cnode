@@ -62,7 +62,7 @@
                 this.$https.get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
                     .then(res => {
                         if (res.data.success == true) {
-                            this.isLoading == false;
+                            this.isLoading = false;
                             this.post = res.data.data
                         }
                     })
@@ -72,9 +72,15 @@
             }
         },
         beforeMount() {
-            this.isLoading == true;
+            this.isLoading = true;
             this.getArticleData();
         },
+        watch:{
+            // eslint-disable-next-line no-unused-vars
+            '$route'(to,from){
+                this.getArticleData()
+            }
+        }
     };
 </script>
 
